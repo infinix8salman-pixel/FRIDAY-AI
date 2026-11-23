@@ -1,0 +1,169 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FRIDAY AI</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:#08080d;
+  color:white;
+  font-family:Arial,sans-serif;
+  text-align:center;
+}
+header{
+  padding:20px;
+  color:#ff304f;
+  font-size:28px;
+  letter-spacing:5px;
+  font-weight:bold;
+}
+.reactor{
+  width:175px;
+  height:175px;
+  margin:30px auto;
+  border:3px solid #ff304f;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:65px;
+  color:#ff304f;
+  box-shadow:0 0 20px #ff304f, inset 0 0 25px #ff304f;
+  animation:glow 2s infinite alternate;
+}
+@keyframes glow{
+  from{box-shadow:0 0 15px #ff304f}
+  to{box-shadow:0 0 45px #ff304f}
+}
+.status{color:#ff6677;letter-spacing:3px}
+.card{
+  background:#17131b;
+  border:1px solid #54202c;
+  border-radius:15px;
+  padding:18px;
+  margin:15px auto;
+  max-width:440px;
+  text-align:left;
+}
+button,select,input{
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#bd1938;
+  color:white;
+  margin:5px;
+}
+button{cursor:pointer}
+input{background:#30232a;width:65%}
+p{color:#bbb}
+</style>
+</head>
+
+<body>
+
+<header>FRIDAY AI</header>
+
+<div class="reactor">✧</div>
+
+<h2 class="status">SYSTEM ONLINE</h2>
+<h3>Hello! I am FRIDAY.</h3>
+<p>Your personal AI assistant.</p>
+
+<div class="card">
+<h3>🎙 Voice Assistant</h3>
+<button onclick="startVoice()">Start Listening</button>
+<p id="voiceText">Waiting for command...</p>
+</div>
+
+<div class="card">
+<h3>🌍 Language</h3>
+<select id="lang">
+<option value="en-US">English</option>
+<option value="ur-PK">Urdu</option>
+<option value="hi-IN">Hindi</option>
+<option value="ar-SA">Arabic</option>
+<option value="fr-FR">French</option>
+<option value="es-ES">Spanish</option>
+<option value="zh-CN">Chinese</option>
+<option value="ja-JP">Japanese</option>
+</select>
+<button onclick="say('Hello! I am Friday.')">Test Voice</button>
+</div>
+
+<div class="card">
+<h3>🛡 Ethical Hacker Mode</h3>
+<p>Learn cybersecurity safely.</p>
+<button onclick="alert('Welcome to Ethical Hacker Learning Lab!')">
+Open Security Lab
+</button>
+</div>
+
+<div class="card">
+<h3>💻 Developer Mode</h3>
+<p>Website and app development.</p>
+<button onclick="alert('Developer Mode selected!')">
+Open Developer Mode
+</button>
+</div>
+
+<div class="card">
+<h3>🤖 Ask FRIDAY</h3>
+<input id="question" placeholder="Type your question">
+<button onclick="askFriday()">Ask</button>
+<p id="answer">Ready for your question.</p>
+</div>
+
+<footer>
+<p>FRIDAY AI • Version 1.0</p>
+<p>Online & Offline interface prototype</p>
+</footer>
+
+<script>
+function say(text){
+ if(!('speechSynthesis' in window)){
+  alert(text);
+  return;
+ }
+ let speech=new SpeechSynthesisUtterance(text);
+ speech.lang=document.getElementById('lang').value;
+ speechSynthesis.speak(speech);
+}
+
+function startVoice(){
+ const SpeechRecognition =
+ window.SpeechRecognition || window.webkitSpeechRecognition;
+
+ if(!SpeechRecognition){
+  document.getElementById('voiceText').innerText =
+  'Voice recognition is not supported in this browser.';
+  return;
+ }
+
+ const recognition=new SpeechRecognition();
+ recognition.lang=document.getElementById('lang').value;
+ recognition.onresult=function(event){
+  const text=event.results[0][0].transcript;
+  document.getElementById('voiceText').innerText=text;
+  say('You said: '+text);
+ };
+ recognition.onerror=function(){
+  document.getElementById('voiceText').innerText='Voice recognition error.';
+ };
+ recognition.start();
+}
+
+function askFriday(){
+ const q=document.getElementById('question').value;
+ document.getElementById('answer').innerText =
+ q ? 'Your question: '+q+'. AI connection is coming soon.' :
+ 'Please enter a question.';
+}
+</script>
+
+</body>
+</html>

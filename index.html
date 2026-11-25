@@ -1,169 +1,42 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FRIDAY AI</title>
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>FRIDAY AI — Tools Hub</title>
 <style>
-*{box-sizing:border-box}
-body{
-  margin:0;
-  background:#08080d;
-  color:white;
-  font-family:Arial,sans-serif;
-  text-align:center;
-}
-header{
-  padding:20px;
-  color:#ff304f;
-  font-size:28px;
-  letter-spacing:5px;
-  font-weight:bold;
-}
-.reactor{
-  width:175px;
-  height:175px;
-  margin:30px auto;
-  border:3px solid #ff304f;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:65px;
-  color:#ff304f;
-  box-shadow:0 0 20px #ff304f, inset 0 0 25px #ff304f;
-  animation:glow 2s infinite alternate;
-}
-@keyframes glow{
-  from{box-shadow:0 0 15px #ff304f}
-  to{box-shadow:0 0 45px #ff304f}
-}
-.status{color:#ff6677;letter-spacing:3px}
-.card{
-  background:#17131b;
-  border:1px solid #54202c;
-  border-radius:15px;
-  padding:18px;
-  margin:15px auto;
-  max-width:440px;
-  text-align:left;
-}
-button,select,input{
-  padding:12px;
-  border:0;
-  border-radius:8px;
-  background:#bd1938;
-  color:white;
-  margin:5px;
-}
-button{cursor:pointer}
-input{background:#30232a;width:65%}
-p{color:#bbb}
-</style>
-</head>
-
-<body>
-
-<header>FRIDAY AI</header>
-
-<div class="reactor">✧</div>
-
-<h2 class="status">SYSTEM ONLINE</h2>
-<h3>Hello! I am FRIDAY.</h3>
-<p>Your personal AI assistant.</p>
-
-<div class="card">
-<h3>🎙 Voice Assistant</h3>
-<button onclick="startVoice()">Start Listening</button>
-<p id="voiceText">Waiting for command...</p>
+:root{--bg:#090d16;--panel:#111a2a;--line:#263650;--red:#ff334f;--text:#eef4ff;--muted:#9aabc4;--cyan:#67dfff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#281323 0,transparent 35%),var(--bg);color:var(--text);font:15px system-ui,Arial}header{padding:22px 18px;border-bottom:1px solid var(--line);display:flex;gap:14px;align-items:center}.core{width:42px;height:42px;border:3px solid var(--red);border-radius:50%;box-shadow:0 0 18px #ff334f88,inset 0 0 12px #ff334f66;flex:none}h1{font-size:22px;margin:0;letter-spacing:2px}header p{margin:3px 0;color:var(--muted);font-size:12px}.wrap{max-width:1100px;margin:auto;padding:18px}.notice{background:#25151d;border:1px solid #633044;padding:12px 14px;border-radius:12px;color:#ffdce3;margin-bottom:16px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:14px}.card{background:linear-gradient(145deg,#152137,#101827);border:1px solid var(--line);border-radius:15px;padding:16px;min-height:160px}.card h2{font-size:16px;margin:0 0 8px}.card p{color:var(--muted);font-size:13px;min-height:34px}.card button,.btn{background:var(--red);color:white;border:0;border-radius:9px;padding:10px 13px;font-weight:650;cursor:pointer}.card button.secondary,.secondary{background:#243650}.tool{display:none;background:var(--panel);border:1px solid var(--line);padding:17px;border-radius:15px;margin-top:16px}.tool.active{display:block}.tool h2{margin-top:0}.row{display:flex;gap:8px;flex-wrap:wrap}input,textarea,select{width:100%;background:#080f1b;color:var(--text);border:1px solid #344965;border-radius:8px;padding:10px;margin:5px 0 10px;font:inherit}textarea{min-height:120px;resize:vertical}label{color:var(--muted);font-size:13px}pre,iframe{width:100%;background:#080f1b;border:1px solid var(--line);border-radius:8px;padding:12px;min-height:90px;white-space:pre-wrap;overflow:auto}iframe{height:260px;padding:0}.status{color:var(--cyan);font-size:13px}.small{font-size:12px;color:var(--muted)}footer{text-align:center;color:var(--muted);padding:24px;font-size:12px}button:focus,input:focus,textarea:focus{outline:2px solid var(--cyan)}
+</style></head>
+<body><header><div class="core"></div><div><h1>FRIDAY AI</h1><p>PERSONAL TOOLS HUB · LOCAL PROTOTYPE</p></div></header>
+<main class="wrap"><div class="notice"><b>Prototype note:</b> Ye tools aapke browser mein chalte hain. Notes isi browser mein save hote hain. AI cloud assistant, always-listening voice aur Android system control abhi included nahi.</div>
+<div class="grid">
+<div class="card"><h2>🧮 Calculator</h2><p>Basic maths calculations.</p><button onclick="openTool('calc')">Open tool</button></div>
+<div class="card"><h2>📝 Notes</h2><p>Notes likhein aur isi browser mein save karein.</p><button onclick="openTool('notes')">Open tool</button></div>
+<div class="card"><h2>💻 Code Editor</h2><p>HTML/CSS/JS likhein, preview aur download karein.</p><button onclick="openTool('code')">Open tool</button></div>
+<div class="card"><h2>🌐 Website Starter</h2><p>Simple website template generate karein.</p><button onclick="openTool('site')">Open tool</button></div>
+<div class="card"><h2>🎮 Game Starter</h2><p>Basic playable click-counter game template.</p><button onclick="openTool('game')">Open tool</button></div>
+<div class="card"><h2>🔤 Text Tools</h2><p>Word count aur text case conversion.</p><button onclick="openTool('text')">Open tool</button></div>
+<div class="card"><h2>🛡️ Phishing Link Checker</h2><p>URL ke kuch suspicious signs check karein. Result final proof nahi.</p><button onclick="openTool('phish')">Open tool</button></div>
+<div class="card"><h2>🔐 File SHA-256 Checker</h2><p>File ka digital hash locally calculate karein.</p><button onclick="openTool('hash')">Open tool</button></div>
 </div>
-
-<div class="card">
-<h3>🌍 Language</h3>
-<select id="lang">
-<option value="en-US">English</option>
-<option value="ur-PK">Urdu</option>
-<option value="hi-IN">Hindi</option>
-<option value="ar-SA">Arabic</option>
-<option value="fr-FR">French</option>
-<option value="es-ES">Spanish</option>
-<option value="zh-CN">Chinese</option>
-<option value="ja-JP">Japanese</option>
-</select>
-<button onclick="say('Hello! I am Friday.')">Test Voice</button>
-</div>
-
-<div class="card">
-<h3>🛡 Ethical Hacker Mode</h3>
-<p>Learn cybersecurity safely.</p>
-<button onclick="alert('Welcome to Ethical Hacker Learning Lab!')">
-Open Security Lab
-</button>
-</div>
-
-<div class="card">
-<h3>💻 Developer Mode</h3>
-<p>Website and app development.</p>
-<button onclick="alert('Developer Mode selected!')">
-Open Developer Mode
-</button>
-</div>
-
-<div class="card">
-<h3>🤖 Ask FRIDAY</h3>
-<input id="question" placeholder="Type your question">
-<button onclick="askFriday()">Ask</button>
-<p id="answer">Ready for your question.</p>
-</div>
-
-<footer>
-<p>FRIDAY AI • Version 1.0</p>
-<p>Online & Offline interface prototype</p>
-</footer>
-
+<section id="calc" class="tool"><h2>Calculator</h2><input id="calcIn" placeholder="Example: (12+8)*3"><button onclick="calculate()">Calculate</button><p id="calcOut" class="status"></p></section>
+<section id="notes" class="tool"><h2>Notes</h2><textarea id="noteText" placeholder="Yahan apne notes likhein..."></textarea><div class="row"><button onclick="saveNotes()">Save notes</button><button class="secondary" onclick="loadNotes()">Load notes</button></div><p id="noteMsg" class="status"></p></section>
+<section id="code" class="tool"><h2>Code Editor</h2><label>HTML / CSS / JavaScript</label><textarea id="codeText"><!doctype html><html><body style="font-family:Arial;text-align:center"><h1>Hello FRIDAY!</h1><button onclick="alert('Hello!')">Click me</button></body></html></textarea><div class="row"><button onclick="previewCode()">Preview</button><button class="secondary" onclick="downloadText('my-code.html',document.getElementById('codeText').value)">Download HTML</button></div><iframe id="preview" title="Code preview" sandbox="allow-scripts"></iframe></section>
+<section id="site" class="tool"><h2>Website Starter</h2><label>Website title</label><input id="siteTitle" value="My Website"><label>Welcome message</label><input id="siteMsg" value="Welcome to my website!"><button onclick="makeSite()">Create & download website</button></section>
+<section id="game" class="tool"><h2>Game Starter</h2><p>Ye basic click-counter game banata hai.</p><label>Game name</label><input id="gameName" value="Click Challenge"><button onclick="makeGame()">Create & download game</button></section>
+<section id="text" class="tool"><h2>Text Tools</h2><textarea id="textIn" placeholder="Text yahan paste karein"></textarea><div class="row"><button onclick="textCase('upper')">UPPERCASE</button><button class="secondary" onclick="textCase('lower')">lowercase</button><button class="secondary" onclick="textCase('title')">Title Case</button></div><p id="textCount" class="status">Words: 0 · Characters: 0</p></section>
+<section id="phish" class="tool"><h2>Phishing Link Checker</h2><input id="urlIn" placeholder="https://example.com"><button onclick="checkUrl()">Check URL</button><p id="urlOut" class="status"></p><p class="small">Ye simple warning checker hai; safe result ka matlab website guaranteed safe nahi.</p></section>
+<section id="hash" class="tool"><h2>File SHA-256 Checker</h2><input id="fileIn" type="file"><button onclick="hashFile()">Calculate SHA-256</button><pre id="hashOut">Choose a file first.</pre><p class="small">File browser se bahar upload nahi hoti; hash isi device par calculate hota hai.</p></section>
+<footer>FRIDAY AI Tools Hub · Safe, local starter prototype</footer></main>
 <script>
-function say(text){
- if(!('speechSynthesis' in window)){
-  alert(text);
-  return;
- }
- let speech=new SpeechSynthesisUtterance(text);
- speech.lang=document.getElementById('lang').value;
- speechSynthesis.speak(speech);
-}
-
-function startVoice(){
- const SpeechRecognition =
- window.SpeechRecognition || window.webkitSpeechRecognition;
-
- if(!SpeechRecognition){
-  document.getElementById('voiceText').innerText =
-  'Voice recognition is not supported in this browser.';
-  return;
- }
-
- const recognition=new SpeechRecognition();
- recognition.lang=document.getElementById('lang').value;
- recognition.onresult=function(event){
-  const text=event.results[0][0].transcript;
-  document.getElementById('voiceText').innerText=text;
-  say('You said: '+text);
- };
- recognition.onerror=function(){
-  document.getElementById('voiceText').innerText='Voice recognition error.';
- };
- recognition.start();
-}
-
-function askFriday(){
- const q=document.getElementById('question').value;
- document.getElementById('answer').innerText =
- q ? 'Your question: '+q+'. AI connection is coming soon.' :
- 'Please enter a question.';
-}
-</script>
-
-</body>
-</html>
+function openTool(id){document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.getElementById(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function calculate(){let s=document.getElementById('calcIn').value.trim();if(!/^[0-9+\-*/().%\s]+$/.test(s)){document.getElementById('calcOut').textContent='Only basic numbers and operators allowed.';return}try{let n=Function('"use strict";return ('+s+')')();document.getElementById('calcOut').textContent=Number.isFinite(n)?'Result: '+n:'Invalid calculation'}catch{document.getElementById('calcOut').textContent='Invalid calculation'}}
+function saveNotes(){localStorage.setItem('friday_notes',document.getElementById('noteText').value);document.getElementById('noteMsg').textContent='Notes saved in this browser.'}function loadNotes(){document.getElementById('noteText').value=localStorage.getItem('friday_notes')||'';document.getElementById('noteMsg').textContent='Notes loaded.'}
+function previewCode(){document.getElementById('preview').srcdoc=document.getElementById('codeText').value}
+function downloadText(name,txt){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([txt],{type:'text/html'}));a.href=u;a.download=name;a.click();URL.revokeObjectURL(u)}
+function makeSite(){let t=esc(document.getElementById('siteTitle').value),m=esc(document.getElementById('siteMsg').value);downloadText('my-website.html',`<!doctype html><html><meta name="viewport" content="width=device-width"><title>${t}</title><body style="font:18px Arial;text-align:center;padding:60px;background:#101827;color:white"><h1>${t}</h1><p>${m}</p></body></html>`)}
+function makeGame(){let n=esc(document.getElementById('gameName').value);downloadText('friday-game.html',`<!doctype html><html><meta name="viewport" content="width=device-width"><title>${n}</title><body style="font:20px Arial;text-align:center;padding:35px"><h1>${n}</h1><p>Score: <b id="s">0</b></p><button style="padding:18px" onclick="document.getElementById('s').textContent++">TAP TO SCORE</button></body></html>`)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function textCase(type){let e=document.getElementById('textIn');let s=e.value;if(type==='upper')e.value=s.toUpperCase();if(type==='lower')e.value=s.toLowerCase();if(type==='title')e.value=s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());countText()}function countText(){let s=document.getElementById('textIn').value;document.getElementById('textCount').textContent='Words: '+(s.trim()?s.trim().split(/\s+/).length:0)+' · Characters: '+s.length}document.getElementById('textIn').addEventListener('input',countText)
+function checkUrl(){let v=document.getElementById('urlIn').value.trim(),o=document.getElementById('urlOut');try{let u=new URL(v);let flags=[];if(u.protocol!=='https:')flags.push('Not using HTTPS');if(u.hostname.includes('xn--'))flags.push('Punycode domain');if(/\d+\.\d+\.\d+\.\d+/.test(u.hostname))flags.push('Uses an IP address');if(u.hostname.split('.').length>4)flags.push('Unusually many subdomains');if(u.username||u.password)flags.push('Contains embedded login details');o.textContent=flags.length?'Warning signs: '+flags.join('; '):'No basic warning signs found. This does NOT prove the site is safe.'}catch{o.textContent='Please enter a complete valid URL, including https://'}}
+async function hashFile(){let f=document.getElementById('fileIn').files[0],o=document.getElementById('hashOut');if(!f){o.textContent='Choose a file first.';return}if(!crypto.subtle){o.textContent='Secure browser context required for SHA-256.';return}o.textContent='Calculating...';try{let b=await f.arrayBuffer(),h=await crypto.subtle.digest('SHA-256',b);o.textContent=Array.from(new Uint8Array(h)).map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){o.textContent='Could not calculate hash in this browser.'}}
+</script></body></html>
